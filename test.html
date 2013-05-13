@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="jquery.joystick.js"></script>
+
+<style type="text/css">
+.joystick {
+	position: relative;
+	width: 130px;
+	height: 130px;
+	background-color: #eee;
+}
+.joystick .handle {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background-color: rgb(201, 44, 44);
+	border: 1px solid rgb(107, 35, 35);
+	border-radius: 5px;
+}
+</style>
+
+<script>
+$(function() {
+	$('#throttle-stick').joystick({
+		xAxis: false,
+		moveEvent: function(pos) { console.log('throttle:' + pos.y) },
+		endEvent: function(pos) { console.log('throttle:' + pos.y) }
+	});
+	$('#yaw-stick').joystick({
+		yAxis: false,
+		xSnap: true,
+		moveEvent: function(pos) { console.log('yaw:' + pos.x) },
+		endEvent: function(pos) { console.log('yaw:' + pos.x) }
+	});
+	
+	$('#throttle-stick').joystick('value', 0.5, 0);
+	$('#yaw-stick').joystick('value', 1, 0.5);
+	
+	var y = $('#throttle-stick').joystick('value').y;
+	console.log(y);
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div>Throttle</div>
+<div class="joystick" id="throttle-stick">
+	<div class="handle"></div>
+</div>
+
+<div>Yaw</div>
+<div class="joystick" id="yaw-stick">
+	<div class="handle"></div>
+</div>
+
+</body>
+</html>
